@@ -1,0 +1,6 @@
+pelican[markdown]>=4.9
+markdown>=3.5
+smartypants>=2.0
+typogrify>=2.0
+invoke>=2.0
+ghp-import>=2.1

@@ -1,0 +1,23 @@
+# Pelican build artifacts
+output/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.env
+.envrc
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local serve lock files
+.fuse_hidden*
+.fnl
