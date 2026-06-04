@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content="Pelican" />
+  {% block head %}
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  {% endblock %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ (THEME_STATIC_DIR|default('theme') + '/css/style.css')|relative_url }}" />
+
+  {% if FEED_ALL_ATOM %}
+  <link href="{{ FEED_ALL_ATOM|relative_url }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+  {% endif %}
+  {% if FEED_ATOM %}
+  <link href="{{ FEED_ATOM|relative_url }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Feed" />
+  {% endif %}
+  {% if CATEGORY_FEED_ATOM and category %}
+  <link href="{{ CATEGORY_FEED_ATOM.format(slug=category.slug)|relative_url }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} {{ category }} Atom Feed" />
+  {% endif %}
+
+  {% if EXTRA_HEAD %}
+  {{ EXTRA_HEAD }}
+  {% endif %}
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.classList.add('theme-' + t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  {% include "_partials/header.html" %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "_partials/footer.html" %}
+
+  <script src="{{ (THEME_STATIC_DIR|default('theme') + '/js/theme-toggle.js')|relative_url }}"></script>
+</body>
+</html>

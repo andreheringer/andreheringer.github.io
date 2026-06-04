@@ -1,0 +1,23 @@
+{% if DEFAULT_PAGINATION and (articles_page.has_previous() or articles_page.has_next()) %}
+<ul class="pagination">
+  {% if articles_page.has_previous() %}
+    <li><a href="{{ articles_page.previous_page_url() }}">&larr; Previous</a></li>
+  {% else %}
+    <li><span class="disabled">&larr; Previous</span></li>
+  {% endif %}
+
+  {% for i in range(1, articles_paginator.num_pages + 1) %}
+    {% if i == articles_page.number %}
+      <li><span class="current">{{ i }}</span></li>
+    {% else %}
+      <li><a href="{{ articles_paginator.page(i).url|relative_url }}">{{ i }}</a></li>
+    {% endif %}
+  {% endfor %}
+
+  {% if articles_page.has_next() %}
+    <li><a href="{{ articles_page.next_page_url() }}">Next &rarr;</a></li>
+  {% else %}
+    <li><span class="disabled">Next &rarr;</span></li>
+  {% endif %}
+</ul>
+{% endif %}

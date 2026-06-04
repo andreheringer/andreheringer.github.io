@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Blog &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container container--wide">
+  <h1 class="page-title">random(thoughts)</h1>
+
+  {% if categories %}
+    {% include "_partials/category_tabs.html" %}
+  {% endif %}
+
+  <div class="post-list">
+    {% for article in articles_page.object_list %}
+      {% include "_partials/post_card.html" %}
+    {% endfor %}
+  </div>
+
+  {% include "_partials/pagination.html" %}
+</div>
+{% endblock %}

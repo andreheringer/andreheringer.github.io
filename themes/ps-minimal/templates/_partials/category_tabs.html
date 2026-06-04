@@ -1,0 +1,10 @@
+<ul class="category-tabs">
+  <li>
+    <a href="{{ "/"|relative_url }}"{% if not active_category %} class="active"{% endif %}>All</a>
+  </li>
+  {% for cat, articles in categories %}
+  <li>
+    <a href="{{ cat.url|relative_url }}"{% if active_category and active_category == cat %} class="active"{% endif %}>{{ cat }}</a>
+  </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Archives &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="page-title">Archives</h1>
+
+  <ul class="post-list" style="list-style:none;padding:0;margin:0;">
+    {% for article in dates %}
+      <li class="post-card" style="padding:1rem 0;">
+        <time datetime="{{ article.date.isoformat() }}">{{ article.date | strftime('%B %-d, %Y') }}</time>
+        &middot;
+        <a href="{{ article.url|relative_url }}">{{ article.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

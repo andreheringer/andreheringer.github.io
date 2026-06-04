@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Not found &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="notfound">
+    <h1>404</h1>
+    <p>That page doesn&rsquo;t exist.</p>
+    <p><a href="{{ "/"|relative_url }}">&larr; Back home</a></p>
+  </div>
+</div>
+{% endblock %}

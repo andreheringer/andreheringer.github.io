@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <article class="article">
+    <header class="article-header">
+      <h1 class="page-title page-title--article">{{ article.title }}</h1>
+      <div class="article-meta">
+        {% if article.author %}
+          <span class="article-author">{{ article.author }}</span>
+          <span class="post-card__sep">|</span>
+        {% endif %}
+        <time datetime="{{ article.date.isoformat() }}">{{ article.date | strftime('%B %-d, %Y') }}</time>
+        {% if article.category %}
+          &middot; <a href="{{ article.category.url|relative_url }}">{{ article.category }}</a>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="article-content">
+      {{ article.content }}
+    </div>
+  </article>
+</div>
+{% endblock %}

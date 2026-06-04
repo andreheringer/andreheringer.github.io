@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <span>&copy; {{ now()|strftime('%Y') }} {{ AUTHOR }}</span>
+    <span>
+      {% if FEED_ATOM %}<a href="{{ FEED_ATOM|relative_url }}">RSS</a>{% endif %}
+      {% if FEED_ATOM and SOCIAL %}<span class="sep"> &middot; </span>{% endif %}
+      {% for name, link in SOCIAL %}
+        <a href="{{ link }}">{{ name }}</a>{% if not loop.last %}<span class="sep"> &middot; </span>{% endif %}
+      {% endfor %}
+    </span>
+  </div>
+</footer>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container container--wide">
+  <h1 class="section-title">
+    {% if category %}{{ category }}
+    {% elif tag %}{{ tag }}
+    {% elif author %}{{ author }}
+    {% else %}{{ section }}{% endif %}
+  </h1>
+
+  <div class="post-list">
+    {% for article in articles_page.object_list %}
+      {% include "_partials/post_card.html" %}
+    {% endfor %}
+  </div>
+
+  {% include "_partials/pagination.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ period | reverse | join(' ') }} &middot; {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="container container--wide">
+  <h1 class="section-title">
+    Articles from {{ period | reverse | join(' ') }}
+  </h1>
+
+  <div class="post-list">
+    {% for article in articles %}
+      {% include "_partials/post_card.html" %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

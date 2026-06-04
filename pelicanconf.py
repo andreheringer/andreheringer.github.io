@@ -29,34 +29,45 @@ DEFAULT_LANG = "en"
 LOCALE = ("en_US.UTF-8", "C.UTF-8", "C")
 
 # Default publication date used when a post omits ``Date``.
-DEFAULT_DATE_FORMAT = "%Y-%m-%d %H:%M"
+DEFAULT_DATE_FORMAT = "%B %-d, %Y"
 
 # --- Theme --------------------------------------------------------------
-# Pelican ships a handful of themes; ``notmyidea`` is the classic default
-# and works well for a simple blog. To use a custom theme, drop it under
-# ``themes/<name>`` and set ``THEME = "themes/<name>"``.
-THEME = "notmyidea"
+# The custom ``ps-minimal`` theme lives at ``themes/ps-minimal``. It is
+# inspired by the PlanetScale blog (light, Inter + Cascadia Code, single
+# orange accent).
+THEME = "themes/ps-minimal"
 
 # --- Plugins ------------------------------------------------------------
-# Plugins are installed separately (see requirements.txt) and activated
-# here. No plugins are enabled by default; drop a name in ``PLUGINS`` to
-# load it. A TOC is provided by the ``markdown.extensions.toc`` extension
-# configured in ``MD_EXTENSIONS`` below — set ``toc: true`` (or pass
-# ``[TOC]`` markers) in a post to opt in.
-PLUGINS: list[str] = []
+# Plugins live under ``plugins/`` and are activated here. The
+# ``relative_url`` plugin below adds a Jinja filter that resolves
+# site-relative URLs (e.g. ``/about/``) into paths relative to the
+# currently-rendered page.
+PLUGIN_PATHS = [str(BASE_PATH / "plugins")]
+PLUGINS = ["relative_url"]
 PLUGINS_CACHE_PATH = str(BASE_PATH / ".cache")
 
 # --- Content behaviour --------------------------------------------------
 DEFAULT_PAGINATION = 10
 SUMMARY_MAX_LENGTH = 50
 
+# Templates Pelican should generate in addition to article and page outputs.
+DIRECT_TEMPLATES = ("index", "categories", "tags", "authors", "archives")
+
+# Paginated article listings (each gets its own page1, page2, …).
+PAGINATED_TEMPLATES = {
+    "index": None,
+    "tag": None,
+    "category": None,
+    "author": None,
+}
+
 # A post is considered a draft unless ``Status: published`` is set.
 USE_FOLDER_AS_CATEGORY = True
 DEFAULT_CATEGORY = "Misc"
 
-# Display *pages* (not just articles) in the navigation menu. The Home
-# and About pages are auto-listed; only add non-page links to MENUITEMS.
-DISPLAY_PAGES_ON_MENU = True
+# Display *pages* (not just articles) in the navigation menu. The nav
+# is driven entirely by ``MENUITEMS`` below, so we don't auto-list pages.
+DISPLAY_PAGES_ON_MENU = False
 DISPLAY_CATEGORIES_ON_MENU = False
 
 # Save pages at the root using pretty URLs: ``content/pages/about.md``
@@ -65,9 +76,11 @@ DISPLAY_CATEGORIES_ON_MENU = False
 PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
 
+# Navigation: order is preserved by the template.
 MENUITEMS = (
-    ("Posts", "/posts.html"),
+    ("About", "/about/"),
     ("GitHub", "https://github.com/andreheringer"),
+    ("YouTube", "https://www.youtube.com/@andreheringer"),
 )
 
 # --- Feeds --------------------------------------------------------------
@@ -101,6 +114,13 @@ MARKDOWN = {
         "markdown.extensions.smarty",
         "markdown.extensions.sane_lists",
     ],
+}
+
+# --- Jinja globals ------------------------------------------------------
+# Expose ``now()`` so the footer can render the current year without
+# needing a static value.
+JINJA_GLOBALS = {
+    "now": lambda: __import__("datetime").datetime.now(),
 }
 
 # --- Typographic niceties ----------------------------------------------
