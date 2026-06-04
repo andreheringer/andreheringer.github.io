@@ -80,7 +80,7 @@ PAGE_SAVE_AS = "{slug}/index.html"
 MENUITEMS = (
     ("About", "/about/"),
     ("GitHub", "https://github.com/andreheringer"),
-    ("YouTube", "https://www.youtube.com/@andreheringer"),
+    ("YouTube", "https://www.youtube.com/@aagheringer"),
 )
 
 # --- Feeds --------------------------------------------------------------
