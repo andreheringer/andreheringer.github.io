@@ -129,7 +129,7 @@ TYPOGRIFY = True
 # --- Static / extras ----------------------------------------------------
 # Files placed under ``content/extra/`` are copied verbatim to the
 # output root. Useful for a ``robots.txt`` or ``CNAME``.
-STATIC_PATHS = ["extra"]
+STATIC_PATHS = ["extra", "images"]
 EXTRA_PATH_METADATA: dict[str, dict[str, str]] = {}
 
 # Delete the output directory before each fresh build when running

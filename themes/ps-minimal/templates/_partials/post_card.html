@@ -3,7 +3,7 @@
     <a href="{{ article.url|relative_url }}">{{ article.title }}</a>
   </h2>
   <div class="post-card__meta">
-    <a class="post-card__category" href="{{ article.category.url|relative_url }}">[{{ article.category }}]</a>
+    <a class="post-card__category" href="{{ article.category.url|relative_url }}">{{ article.category }}</a>
     <span class="post-card__author">{{ article.author }}</span>
     <span class="post-card__sep">|</span>
     <time class="post-card__date" datetime="{{ article.date.isoformat() }}">{{ article.date | strftime('%B %-d, %Y') }}</time>

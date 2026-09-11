@@ -1,36 +1,40 @@
-/* ps-minimal — PlanetScale-inspired theme for Pelican */
+/* ps-minimal — "Gilded Parchment Editorial" palette */
 
 :root {
-  --bg: #fafafa;
-  --text: #1a1a1a;
-  --muted: #818181;
-  --rule: #e1e1e1;
-  --accent: #38a3a5;
-  --code-bg: #f4f4f4;
+  --bg: #E8DCC0;
+  --surface: #F5EFE2;
+  --text: #2B2A26;
+  --muted: #7A5A2E;
+  --rule: #A88B66;
+  --accent: #6B7A4E;
+  --code-bg: #F5EFE2;
   --max-width: 960px;
   --index-width: 1080px;
+  --font-serif: "EB Garamond", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* Dark theme (toggled via .theme-dark class on <html>) */
+/* Dark theme (toggled via .theme-dark class on <html>) — chiaroscuro mode */
 .theme-dark {
-  --bg: #0d0d0d;
-  --text: #ededed;
-  --muted: #888;
-  --rule: #2a2a2a;
-  --code-bg: #1a1a1a;
+  --bg: #2B2A26;
+  --surface: #34322D;
+  --text: #E8DCC0;
+  --muted: #A88B66;
+  --rule: #5C5448;
+  --code-bg: #1F1E1B;
 }
 
 /* No-JS fallback: respect the OS dark-mode preference. The .theme-dark
    class applied by the head script takes precedence when JS is on. */
 @media (prefers-color-scheme: dark) {
   :root:not(.theme-light) {
-    --bg: #0d0d0d;
-    --text: #ededed;
-    --muted: #888;
-    --rule: #2a2a2a;
-    --code-bg: #1a1a1a;
+    --bg: #2B2A26;
+    --surface: #34322D;
+    --text: #E8DCC0;
+    --muted: #A88B66;
+    --rule: #5C5448;
+    --code-bg: #1F1E1B;
   }
 }
 
@@ -64,8 +68,8 @@ a:hover { color: var(--accent); }
 img { max-width: 100%; height: auto; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-weight: 500;
   line-height: 1.25;
   margin: 2.25rem 0 1rem;
   letter-spacing: -0.01em;
@@ -102,7 +106,7 @@ code, kbd, samp, pre {
 code {
   background: var(--code-bg);
   padding: 0.1em 0.35em;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 pre {
@@ -229,25 +233,18 @@ main {
 /* Page title (blog index, archives, listings, pages, articles) */
 
 .page-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 500;
   line-height: 0.95;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   margin: 0.5rem 0 2.5rem;
-  margin-left: min(-15%, -2.5rem);
-  text-transform: lowercase;
-}
-.page-title::before {
-  content: "//\00a0";
-  color: var(--accent);
 }
 
 /* Smaller variant used on individual article pages. */
 .page-title--article {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1rem;
-  margin-left: min(-5%, -1.25rem);
 }
 
 /* Category filter tabs (home / index page) */
@@ -274,7 +271,7 @@ main {
   text-decoration: none;
   color: var(--muted);
   padding: 0.15rem 0.4rem;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 0.95rem;
 }
 .category-tabs a:hover { color: var(--accent); }
@@ -354,6 +351,52 @@ article.article .article-content h2 {
   margin-top: 2.5rem;
 }
 
+/* Drop cap on the opening paragraph of an article. */
+article.article .article-content > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.5em;
+  line-height: 0.8;
+  float: left;
+  margin: 0.1em 0.1em 0 0;
+  color: var(--accent);
+}
+
+/* Editorial lead figure — aged-paper framing, candlelight shadow. */
+.lead-figure {
+  margin: 0 0 2.5rem;
+  float: right;
+  max-width: 320px;
+  width: 100%;
+  margin-inline-start: 1.5rem;
+  margin-block-start: 0.25rem;
+}
+.lead-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  filter: sepia(0.15) saturate(0.9) brightness(0.98);
+  box-shadow: 0 6px 18px -8px rgba(43, 42, 38, 0.35);
+}
+.lead-figure figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 540px) {
+  .lead-figure {
+    float: none;
+    max-width: 100%;
+    margin-inline-start: 0;
+  }
+  .lead-figure figcaption { text-align: center; }
+}
+
 /* Pagination */
 
 .pagination {
@@ -371,7 +414,7 @@ article.article .article-content h2 {
   text-decoration: none;
   color: var(--muted);
   padding: 0.15rem 0.35rem;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .pagination a:hover { color: var(--accent); }
 .pagination .current {
@@ -399,18 +442,12 @@ article.article .article-content h2 {
 /* Section title (Category, Tag, Author listings) */
 
 .section-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 500;
   line-height: 1.0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin: 0.5rem 0 1.5rem;
-  margin-left: min(-5%, -2rem);
-  text-transform: lowercase;
-}
-.section-title::before {
-  content: "::\00a0";
-  color: var(--accent);
 }
 .section-title small {
   color: var(--muted);

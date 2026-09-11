@@ -2,6 +2,11 @@ Title: About
 Slug: about
 Status: published
 
+<figure class="lead-figure">
+  <img src="../images/cartografo.jpg" alt="A cartographer at work" loading="lazy" />
+  <figcaption>The cartographer &mdash; charting paper scraps of the mind.</figcaption>
+</figure>
+
 I'm Andre Heringer, a software developer working on the Cloud Storage Team at VTEX in Rio de Janeiro, Brazil. Previously, I worked at Microsoft on the CosmosDB team.
 
 My main interests are in databases and distributed systems. I'm particularly fascinated by the challenges of building large-scale data infrastructure. Lately, I've been diving into Rust for systems programming.
